@@ -20,11 +20,28 @@ const stateInit = {
 export const reducer = (state = stateInit, action) => {
   switch (action.type) {
     case BUY_ITEM:
-      return { ...state };
+      return {
+        ...state,
+        car: {
+          ...state.car,
+          features: [...state.car.features, { ...action.payload }]
+        }
+      };
     case UPDATE_PRICE:
-      return { ...state };
+      return {
+        ...state,
+        additionalPrice: (state.additionalPrice += action.payload)
+      };
     case REMOVE_FEATURE:
-      return { ...state };
+      return {
+        ...state,
+        car: {
+          ...state.car,
+          features: state.car.features.filter(
+            featureIHave => featureIHave.id !== action.payload.id
+          )
+        }
+      };
     default:
       return state;
   }
