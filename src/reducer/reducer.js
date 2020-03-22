@@ -27,6 +27,7 @@ export const reducer = (state = stateInit, action) => {
         if (featureIHave.id === action.payload.id) {
           error = "Oops! You have already added this feature.";
         }
+        return null; // compiler complains about a lack of return, but I'm just using this to loop, so I'm returning nothing to shut it up
       });
 
       return {
