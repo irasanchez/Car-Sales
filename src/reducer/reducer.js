@@ -1,6 +1,7 @@
 import { BUY_ITEM, REMOVE_FEATURE, UPDATE_PRICE } from "../actions/actions";
 
 const stateInit = {
+  message: "",
   additionalPrice: 0,
   car: {
     price: 26395,
@@ -20,12 +21,23 @@ const stateInit = {
 export const reducer = (state = stateInit, action) => {
   switch (action.type) {
     case BUY_ITEM:
+      // if feature has already been added, make error message to add to state
+      let error = false;
+      state.car.features.map(featureIHave => {
+        if (featureIHave.id === action.payload.id) {
+          error = "Oops! You have already added this feature.";
+        }
+      });
+
       return {
         ...state,
         car: {
           ...state.car,
-          features: [...state.car.features, { ...action.payload }]
-        }
+          features: error
+            ? [...state.car.features]
+            : [...state.car.features, { ...action.payload }] //only add feature if error is false
+        },
+        message: error
       };
     case UPDATE_PRICE:
       return {

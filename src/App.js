@@ -8,14 +8,17 @@ import { connect } from "react-redux";
 
 const App = props => {
   return (
-    <div className="boxes">
-      <div className="box">
-        <Header car={props.car} />
-        <AddedFeatures car={props.car} />
-      </div>
-      <div className="box">
-        <AdditionalFeatures additionalFeatures={props.additionalFeatures} />
-        <Total car={props.car} additionalPrice={props.additionalPrice} />
+    <div>
+      {props.message && <p>{props.message}</p>}
+      <div className="boxes">
+        <div className="box">
+          <Header car={props.car} />
+          <AddedFeatures car={props.car} />
+        </div>
+        <div className="box">
+          <AdditionalFeatures additionalFeatures={props.additionalFeatures} />
+          <Total car={props.car} additionalPrice={props.additionalPrice} />
+        </div>
       </div>
     </div>
   );
