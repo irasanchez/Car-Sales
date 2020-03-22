@@ -7,7 +7,10 @@ const AdditionalFeature = props => {
     <li>
       <button
         onClick={() => {
+          console.log(`ONCLICK TRIGGERED`);
+          console.log(`trigger buyItem`);
           props.buyItem(props.feature);
+          console.log(`trigger updatePrice`);
           props.updatePrice(props.feature.price);
         }}
         className="button"
@@ -19,4 +22,5 @@ const AdditionalFeature = props => {
   );
 };
 
+// null is here because MSTP is not needed
 export default connect(null, { buyItem, updatePrice })(AdditionalFeature);

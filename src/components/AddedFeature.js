@@ -7,7 +7,10 @@ const AddedFeature = props => {
     <li>
       <button
         onClick={() => {
+          console.log(`ONCLICK TRIGGERED`);
+          console.log(`trigger removeFeature`);
           props.removeFeature(props.feature);
+          console.log(`trigger updatePrice`);
           props.updatePrice(-props.feature.price);
         }}
         className="button"
